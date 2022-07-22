@@ -1,13 +1,28 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 import TextField from '@mui/material/TextField';
+import Card from './components/Card/Card';
+import axios from 'axios';
 
 function App() {
 
-	const search = () => {
+	const [coin,setCoin] = useState("");
+	const [coinInfo,setCoinInfo] = useState<undefined | any>(undefined)
 
+	const BASE_URL = "https://api.coingecko.com/api/v3/coins"
+	
+	const search = () => {
+		axios.get(`${BASE_URL}/${coin}`)
+		.then((res) => {
+			setCoinInfo(res.data);
+			
+		
+		})
+		.catch((error) => {
+			setCoinInfo(null);
+		})
 	}
 
 
@@ -17,11 +32,18 @@ function App() {
 				variant='filled'
 				size='small'
 				label="Search for coin..."
-      >
-			<button onClick={search}></button>
+				onChange={(e) => setCoin(e.target.value)}
+      />
+      
+		<button onClick={search}>Search</button>
+
+		{coinInfo === undefined || coinInfo === null ? <p>Coin not found!</p> : (
+			<Card name={coinInfo.name} image={coinInfo.image.small} favourited={false} />
+		)}
 
 
-      </TextField>
+
+			
     </div>
   );
 }

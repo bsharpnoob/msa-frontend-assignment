@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React,{FC,useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import "../Popup/Popup.styles.css"
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -16,14 +17,20 @@ const style = {
   p: 4,
 };
 
-export default function Popup() {
-  const [open, setOpen] = React.useState(false);
+interface Coin {
+  name: string,
+  image: string
+}
+
+
+const Popup: React.FC<Coin> = ({name,image}) => {
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen} className="popup-button">View</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -32,13 +39,15 @@ export default function Popup() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            {name}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            
+          </Typography> */}
+          <img src={image}></img>
         </Box>
       </Modal>
     </div>
   );
 }
+export default Popup;

@@ -1,0 +1,9 @@
+.popup-button {
+    color: white;
+    transition: all 0.2s;
+}
+
+.popup-button:hover {
+   
+    transform: translateY(-2px);
+}
