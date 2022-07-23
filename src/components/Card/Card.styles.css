@@ -1,27 +1,15 @@
 .container {
     width: 200px;
-    background-color: grey;
+    background-color: white;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+    border: 2px solid black;
 }
 
-.options {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    
-}
 
-.favourite-button {
-    background-color: transparent;
-    border: none;
-    transition: all 0.2s;
-    cursor: pointer;
-}
 
-.favourite-button:hover {
-    transform: translateY(-2px);
-}
+
+

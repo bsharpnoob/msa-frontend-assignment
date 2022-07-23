@@ -3,38 +3,26 @@ import "../Card/Card.styles.css"
 import Popup from "../Popup/Popup"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
-
-interface Coin {
-  name: string,
-  image: string,
-  favourited: boolean
-}
+import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
-const Card: React.FC<Coin> = ({name,image,favourited}) => {
+const Card: React.FC<any> = ({coin}) => {
+  const BASE_URL = "https://api.coingecko.com/api/v3/coins"
+  const URL_INFO = "market_chart?vs_currency=nzd&days=30"
+
   
 
-  useEffect(() => {
-    
-  },[])
-
-  const favourite = () => {
-    
-  }
+  
 
   return (
     <div className='container'>
-      
-        <h1>{name}</h1>
-        <img src={image}></img>
-        <div className="options">
-            <Popup name={name} image={image}></Popup>
-            
-            {favourited && <IconButton ><FavoriteIcon style={{fill:"pink"}}></FavoriteIcon></IconButton>}
-            {!favourited && <IconButton ><FavoriteIcon style={{fill:"black"}}></FavoriteIcon></IconButton>}
-            
+   
+      <h1>{coin.name}</h1>
+      <img src={coin.image.small}></img>
 
-        </div>
+      <Popup coin={coin}></Popup>
+     
     </div>
   );
 

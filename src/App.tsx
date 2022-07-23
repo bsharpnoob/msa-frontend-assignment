@@ -38,7 +38,7 @@ function App() {
 		<button onClick={search}>Search</button>
 
 		{coinInfo === undefined || coinInfo === null ? <p>Coin not found!</p> : (
-			<Card name={coinInfo.name} image={coinInfo.image.small} favourited={false} />
+			<Card coin={coinInfo} />
 		)}
 
 
